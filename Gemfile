@@ -45,6 +45,7 @@ group :development, :test do
 
 
   gem 'rubocop', require: false
+  gem 'railroady'
 end
 
 group :test do
