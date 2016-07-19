@@ -53,6 +53,7 @@ group :development, :test do
   gem 'rspec-power_assert'
   gem "factory_girl_rails"
   gem "database_cleaner"
+  gem 'coveralls', require: false
 end
 
 
