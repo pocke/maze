@@ -2,19 +2,19 @@
 #
 # Table name: posts
 #
-#  id              :integer          not null, primary key
-#  value           :text(65535)      not null
-#  post_sources_id :integer          not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id             :integer          not null, primary key
+#  value          :text(65535)      not null
+#  post_source_id :integer          not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 # Indexes
 #
-#  index_posts_on_post_sources_id  (post_sources_id)
+#  index_posts_on_post_source_id  (post_source_id)
 #
 # Foreign Keys
 #
-#  fk_rails_42261f8a4a  (post_sources_id => post_sources.id)
+#  fk_rails_89331e3a47  (post_source_id => post_sources.id)
 #
 
 class Post < ApplicationRecord
