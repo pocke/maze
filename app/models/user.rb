@@ -9,4 +9,7 @@
 #
 
 class User < ApplicationRecord
+  has_many :post_sources
+  has_many :subscribes
+  has_many :categories, through: :subscribes
 end
