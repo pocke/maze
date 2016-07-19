@@ -17,8 +17,8 @@ class InitTables < ActiveRecord::Migration[5.0]
       t.string :name, null: false
       t.string :secret, null: false
 
-      t.references :users, index: true, foreign_key: true, null: false
-      t.references :categories, index: true, foreign_key: true, null: false
+      t.references :user, index: true, foreign_key: true, null: false
+      t.references :category, index: true, foreign_key: true, null: false
 
       t.timestamps
     end
@@ -26,7 +26,7 @@ class InitTables < ActiveRecord::Migration[5.0]
     create_table :posts do |t|
       t.text :value, null: false
 
-      t.references :post_sources, index: true, foreign_key: true, null: false
+      t.references :post_source, index: true, foreign_key: true, null: false
 
       t.timestamps
     end
@@ -43,8 +43,8 @@ class InitTables < ActiveRecord::Migration[5.0]
     add_foreign_key "category_trees", "categories", column: "parent_id"
 
     create_table :subscribes do |t|
-      t.references :users,      index: true, foreign_key: true, null: false
-      t.references :categories, index: true, foreign_key: true, null: false
+      t.references :user,      index: true, foreign_key: true, null: false
+      t.references :category, index: true, foreign_key: true, null: false
 
       t.timestamps
     end

@@ -29,31 +29,31 @@ ActiveRecord::Schema.define(version: 20160719104120) do
   end
 
   create_table "post_sources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",          null: false
-    t.string   "secret",        null: false
-    t.integer  "users_id",      null: false
-    t.integer  "categories_id", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["categories_id"], name: "index_post_sources_on_categories_id", using: :btree
-    t.index ["users_id"], name: "index_post_sources_on_users_id", using: :btree
+    t.string   "name",        null: false
+    t.string   "secret",      null: false
+    t.integer  "user_id",     null: false
+    t.integer  "category_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_post_sources_on_category_id", using: :btree
+    t.index ["user_id"], name: "index_post_sources_on_user_id", using: :btree
   end
 
   create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "value",           limit: 65535, null: false
-    t.integer  "post_sources_id",               null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.index ["post_sources_id"], name: "index_posts_on_post_sources_id", using: :btree
+    t.text     "value",          limit: 65535, null: false
+    t.integer  "post_source_id",               null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["post_source_id"], name: "index_posts_on_post_source_id", using: :btree
   end
 
   create_table "subscribes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "users_id",      null: false
-    t.integer  "categories_id", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.index ["categories_id"], name: "index_subscribes_on_categories_id", using: :btree
-    t.index ["users_id"], name: "index_subscribes_on_users_id", using: :btree
+    t.integer  "user_id",     null: false
+    t.integer  "category_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_subscribes_on_category_id", using: :btree
+    t.index ["user_id"], name: "index_subscribes_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -64,9 +64,9 @@ ActiveRecord::Schema.define(version: 20160719104120) do
 
   add_foreign_key "category_trees", "categories", column: "child_id"
   add_foreign_key "category_trees", "categories", column: "parent_id"
-  add_foreign_key "post_sources", "categories", column: "categories_id"
-  add_foreign_key "post_sources", "users", column: "users_id"
-  add_foreign_key "posts", "post_sources", column: "post_sources_id"
-  add_foreign_key "subscribes", "categories", column: "categories_id"
-  add_foreign_key "subscribes", "users", column: "users_id"
+  add_foreign_key "post_sources", "categories"
+  add_foreign_key "post_sources", "users"
+  add_foreign_key "posts", "post_sources"
+  add_foreign_key "subscribes", "categories"
+  add_foreign_key "subscribes", "users"
 end
