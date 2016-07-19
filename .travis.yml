@@ -5,3 +5,6 @@ rvm:
 
 cache: bundler
 sudo: false
+
+before_script:
+  - bin/rails db:create
