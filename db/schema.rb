@@ -19,15 +19,6 @@ ActiveRecord::Schema.define(version: 20160719104120) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "category_trees", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "child_id",   null: false
-    t.integer  "parent_id",  null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["child_id"], name: "index_category_trees_child", using: :btree
-    t.index ["parent_id"], name: "index_category_trees_parent", using: :btree
-  end
-
   create_table "post_sources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",        null: false
     t.string   "secret",      null: false
@@ -62,8 +53,6 @@ ActiveRecord::Schema.define(version: 20160719104120) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "category_trees", "categories", column: "child_id"
-  add_foreign_key "category_trees", "categories", column: "parent_id"
   add_foreign_key "post_sources", "categories"
   add_foreign_key "post_sources", "users"
   add_foreign_key "posts", "post_sources"
