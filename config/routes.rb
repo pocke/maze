@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :subscribes
-  resources :category_trees
   resources :categories
   resources :posts
   resources :post_sources
