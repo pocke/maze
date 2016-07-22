@@ -3,10 +3,13 @@
 # Table name: posts
 #
 #  id             :integer          not null, primary key
-#  value          :text(65535)      not null
 #  post_source_id :integer          not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  title          :string(255)      not null
+#  description    :text(65535)      not null
+#  image_url      :string(255)
+#  url            :string(255)      not null
 #
 # Indexes
 #

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719104120) do
+ActiveRecord::Schema.define(version: 20160722073223) do
 
   create_table "post_sources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
@@ -22,10 +22,13 @@ ActiveRecord::Schema.define(version: 20160719104120) do
   end
 
   create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "value",          limit: 65535, null: false
     t.integer  "post_source_id",               null: false
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.string   "title",                        null: false
+    t.text     "description",    limit: 65535, null: false
+    t.string   "image_url"
+    t.string   "url",                          null: false
     t.index ["post_source_id"], name: "index_posts_on_post_source_id", using: :btree
   end
 
