@@ -12,21 +12,12 @@
 
 ActiveRecord::Schema.define(version: 20160719104120) do
 
-  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                      null: false
-    t.text     "description", limit: 65535, null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-  end
-
   create_table "post_sources", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",        null: false
-    t.string   "secret",      null: false
-    t.integer  "user_id",     null: false
-    t.integer  "category_id", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["category_id"], name: "index_post_sources_on_category_id", using: :btree
+    t.string   "name",       null: false
+    t.string   "secret",     null: false
+    t.integer  "user_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_post_sources_on_user_id", using: :btree
   end
 
@@ -38,24 +29,12 @@ ActiveRecord::Schema.define(version: 20160719104120) do
     t.index ["post_source_id"], name: "index_posts_on_post_source_id", using: :btree
   end
 
-  create_table "subscribes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id",     null: false
-    t.integer  "category_id", null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["category_id"], name: "index_subscribes_on_category_id", using: :btree
-    t.index ["user_id"], name: "index_subscribes_on_user_id", using: :btree
-  end
-
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "post_sources", "categories"
   add_foreign_key "post_sources", "users"
   add_foreign_key "posts", "post_sources"
-  add_foreign_key "subscribes", "categories"
-  add_foreign_key "subscribes", "users"
 end
